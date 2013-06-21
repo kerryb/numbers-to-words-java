@@ -50,6 +50,12 @@ public class NumbersToWordsTest {
     expectConversion(90, "ninety");
   }
 
+  @Test
+  public void convertsArbitraryTwoDigitNumbers() {
+    expectConversion(42, "forty-two");
+    expectConversion(69, "sixty-nine");
+  }
+
   private void expectConversion(final int number, final String expectedWords) {
     assertEquals(expectedWords, NumbersToWords.convert(number));
   }
