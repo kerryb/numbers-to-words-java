@@ -24,6 +24,20 @@ public class NumbersToWordsTest {
     expectConversion(9, "nine");
   }
 
+  @Test
+  public void convertsTenToNineteen() {
+    expectConversion(10, "ten");
+    expectConversion(11, "eleven");
+    expectConversion(12, "twelve");
+    expectConversion(13, "thirteen");
+    expectConversion(14, "fourteen");
+    expectConversion(15, "fifteen");
+    expectConversion(16, "sixteen");
+    expectConversion(17, "seventeen");
+    expectConversion(18, "eighteen");
+    expectConversion(19, "nineteen");
+  }
+
   private void expectConversion(final int number, final String expectedWords) {
     assertEquals(expectedWords, NumbersToWords.convert(number));
   }
