@@ -10,7 +10,9 @@ public class NumbersToWords {
       "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 
   public static String convert(final int number) {
-    if (number < 20) {
+    if (number >= 100) {
+      return NUMBERS_UP_TO_19[number/100] + " hundred";
+    } else if (number < 20) {
       return NUMBERS_UP_TO_19[number];
     } else {
       final int tens = number / 10;
