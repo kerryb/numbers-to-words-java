@@ -62,6 +62,13 @@ public class NumbersToWordsTest {
     expectConversion(300, "three hundred");
   }
 
+  @Test
+  public void convertsArbitraryThreeDigitNumbers() {
+    expectConversion(123, "one hundred and twenty-three");
+    expectConversion(360, "three hundred and sixty");
+    expectConversion(501, "five hundred and one");
+  }
+
   private void expectConversion(final int number, final String expectedWords) {
     assertEquals(expectedWords, NumbersToWords.convert(number));
   }

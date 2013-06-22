@@ -10,19 +10,34 @@ public class NumbersToWords {
       "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 
   public static String convert(final int number) {
+    final int hundreds = number / 100;
+    final int tensAndUnits = number - hundreds * 100;
     if (number >= 100) {
-      return NUMBERS_UP_TO_19[number/100] + " hundred";
-    } else if (number < 20) {
-      return NUMBERS_UP_TO_19[number];
-    } else {
-      final int tens = number / 10;
-      final int units = number - tens * 10;
-      if (units == 0) {
-        return MULTIPLES_OF_10[tens];
+      if (tensAndUnits == 0) {
+        return convertHundreds(number);
       } else {
-        return MULTIPLES_OF_10[tens] + "-"
-            + NUMBERS_UP_TO_19[units];
+        return convertHundreds(number) + " and "
+            + convertTensAndUnits(tensAndUnits);
       }
+    } else {
+      return convertTensAndUnits(number);
+    }
+  }
+
+  private static String convertHundreds(final int number) {
+    return NUMBERS_UP_TO_19[number / 100] + " hundred";
+  }
+
+  private static String convertTensAndUnits(final int number) {
+    final int tens = number / 10;
+    final int units = number - tens * 10;
+
+    if (number < 20) {
+      return NUMBERS_UP_TO_19[number];
+    } else if (units == 0) {
+      return MULTIPLES_OF_10[tens];
+    } else {
+      return MULTIPLES_OF_10[tens] + "-" + NUMBERS_UP_TO_19[units];
     }
   }
 }
