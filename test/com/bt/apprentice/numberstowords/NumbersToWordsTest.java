@@ -2,6 +2,7 @@ package com.bt.apprentice.numberstowords;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class NumbersToWordsTest {
@@ -11,7 +12,7 @@ public class NumbersToWordsTest {
     expectConversion(0, "zero");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsSingleDigits() {
     expectConversion(1, "one");
     expectConversion(2, "two");
@@ -24,7 +25,7 @@ public class NumbersToWordsTest {
     expectConversion(9, "nine");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsTenToNineteen() {
     expectConversion(10, "ten");
     expectConversion(11, "eleven");
@@ -38,7 +39,7 @@ public class NumbersToWordsTest {
     expectConversion(19, "nineteen");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsMultiplesOfTenUpToNinety() {
     expectConversion(20, "twenty");
     expectConversion(30, "thirty");
@@ -50,32 +51,32 @@ public class NumbersToWordsTest {
     expectConversion(90, "ninety");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsArbitraryTwoDigitNumbers() {
     expectConversion(42, "forty-two");
     expectConversion(69, "sixty-nine");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsHundreds() {
     expectConversion(100, "one hundred");
     expectConversion(300, "three hundred");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsArbitraryThreeDigitNumbers() {
     expectConversion(123, "one hundred and twenty-three");
     expectConversion(360, "three hundred and sixty");
     expectConversion(501, "five hundred and one");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsThousands() {
     expectConversion(4000, "four thousand");
     expectConversion(9000, "nine thousand");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsArbitraryFourDigitNumbers() {
     expectConversion(1234, "one thousand two hundred and thirty-four");
     expectConversion(9600, "nine thousand six hundred");
@@ -83,7 +84,7 @@ public class NumbersToWordsTest {
     expectConversion(7008, "seven thousand and eight");
   }
 
-  @Test
+  @Test @Ignore
   public void convertsArbitraryFiveAndSixDigitNumbers() {
     expectConversion(123456, "one hundred and twenty-three thousand four hundred and fifty-six");
     expectConversion(200003, "two hundred thousand and three");
@@ -96,7 +97,7 @@ public class NumbersToWordsTest {
     expectConversion(12300, "twelve thousand three hundred");
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class) @Ignore
   public void rejectsNumbersOver999999() {
     NumbersToWords.convert(1000000);
   }
