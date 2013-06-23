@@ -5,11 +5,19 @@ public class NumbersToWords {
       "three", "four", "five", "six", "seven", "eight", "nine", "ten",
       "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
       "seventeen", "eighteen", "nineteen" };
-
   private static final String[] MULTIPLES_OF_10 = { "", "", "twenty", "thirty",
       "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+  private final int number;
 
   public static String convert(final int number) {
+    return new NumbersToWords(number).convert();
+  }
+
+  public NumbersToWords(final int number) {
+    this.number = number;
+  }
+
+  public String convert() {
     final int thousands = number / 1000;
     final int hundreds = number / 100;
     final int tensAndUnits = number - hundreds * 100;
@@ -28,11 +36,11 @@ public class NumbersToWords {
     }
   }
 
-  private static String convertHundreds(final int number) {
+  private String convertHundreds(final int number) {
     return NUMBERS_UP_TO_19[number / 100] + " hundred";
   }
 
-  private static String convertTensAndUnits(final int number) {
+  private String convertTensAndUnits(final int number) {
     final int tens = number / 10;
     final int units = number - tens * 10;
 
