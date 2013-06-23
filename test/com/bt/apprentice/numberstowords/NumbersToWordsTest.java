@@ -3,6 +3,7 @@ package com.bt.apprentice.numberstowords;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Categories.ExcludeCategory;
 
 public class NumbersToWordsTest {
 
@@ -103,6 +104,11 @@ public class NumbersToWordsTest {
         "ten thousand and twenty");
     expectConversion(12300,
         "twelve thousand three hundred");
+  }
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void rejectsNumbersOver999999() {
+    NumbersToWords.convert(1000000);
   }
 
   private void expectConversion(final int number, final String expectedWords) {

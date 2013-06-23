@@ -21,6 +21,8 @@ public class NumbersToWords {
   public String convert() {
     if (number == 0) {
       return ("zero");
+    } else if (number > 999999) {
+      throw new IllegalArgumentException();
     }
 
     final int thousands = number / 1000;
