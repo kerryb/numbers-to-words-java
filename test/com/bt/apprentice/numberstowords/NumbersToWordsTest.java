@@ -5,6 +5,21 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
+/*
+ * Numbers-to-Words Kata
+ * ~~~~~~~~~~~~~~~~~~~~~
+ *
+ * Your task is to implement the NumbersToWords.convert method, which takes
+ * an integer (eg 123) and returns the number in word form (eg "one hundred
+ * and twenty-three").
+ *
+ * All the tests apart from the first one are marked as @Ignore, which means
+ * they won't be run. Implement the code to make the first test pass, then
+ * remove the @Ignore annotation on the second test and make that one pass,
+ * and so on until none of the tests are ignored and they all pass.
+ *
+ *  Don't forget to stop and refactor each time your tests all pass!
+ */
 public class NumbersToWordsTest {
 
   @Test
