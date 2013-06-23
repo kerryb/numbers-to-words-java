@@ -29,7 +29,7 @@ public class NumbersToWords {
     final int tensAndUnits = remainder - hundreds * 100;
 
     if (thousands > 0) {
-      append(convertTensAndUnits(thousands) + " thousand");
+      append(convertThousands(thousands));
     }
     if (hundreds > 0) {
       append(convertHundreds(hundreds));
@@ -53,6 +53,10 @@ public class NumbersToWords {
       result.append(separator);
     }
     result.append(words);
+  }
+
+  private String convertThousands(final int thousands) {
+    return convertTensAndUnits(thousands) + " thousand";
   }
 
   private String convertHundreds(final int hundreds) {
