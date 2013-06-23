@@ -8,6 +8,7 @@ public class NumbersToWords {
   private static final String[] MULTIPLES_OF_10 = { "", "", "twenty", "thirty",
       "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
   private final int number;
+  private StringBuffer result = new StringBuffer();
 
   public static String convert(final int number) {
     return new NumbersToWords(number).convert();
@@ -18,26 +19,44 @@ public class NumbersToWords {
   }
 
   public String convert() {
-    final int thousands = number / 1000;
-    final int hundreds = number / 100;
-    final int tensAndUnits = number - hundreds * 100;
-
-    if (number > 1000) {
-      return convertTensAndUnits(thousands) + " thousand";
-    } else if (number >= 100) {
-      if (tensAndUnits == 0) {
-        return convertHundreds(number);
-      } else {
-        return convertHundreds(number) + " and "
-            + convertTensAndUnits(tensAndUnits);
-      }
-    } else {
-      return convertTensAndUnits(number);
+    if (number == 0) {
+      return ("zero");
     }
+
+    final int thousands = number / 1000;
+    int remainder = number - thousands * 1000;
+    final int hundreds = remainder / 100;
+    final int tensAndUnits = remainder - hundreds * 100;
+
+    if (thousands > 0) {
+      append(convertTensAndUnits(thousands) + " thousand");
+    }
+    if (hundreds > 0) {
+      append(convertHundreds(hundreds));
+    }
+    if (tensAndUnits > 0) {
+      appendWithAnd(convertTensAndUnits(tensAndUnits));
+    }
+    return result.toString();
   }
 
-  private String convertHundreds(final int number) {
-    return NUMBERS_UP_TO_19[number / 100] + " hundred";
+  private void append(final String words) {
+    appendWithSeparator(words, " ");
+  }
+
+  private void appendWithAnd(final String words) {
+    appendWithSeparator(words, " and ");
+  }
+
+  private void appendWithSeparator(final String words, final String separator) {
+    if (result.length() > 0) {
+      result.append(separator);
+    }
+    result.append(words);
+  }
+
+  private String convertHundreds(final int hundreds) {
+    return NUMBERS_UP_TO_19[hundreds] + " hundred";
   }
 
   private String convertTensAndUnits(final int number) {
