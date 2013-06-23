@@ -83,6 +83,28 @@ public class NumbersToWordsTest {
     expectConversion(7008, "seven thousand and eight");
   }
 
+  @Test
+  public void convertsArbitraryFiveAndSixDigitNumbers() {
+    expectConversion(123456,
+        "one hundred and twenty-three thousand four hundred and fifty-six");
+    expectConversion(200003,
+        "two hundred thousand and three");
+    expectConversion(340000,
+        "three hundred and forty thousand");
+    expectConversion(400500,
+        "four hundred thousand five hundred");
+    expectConversion(600070,
+        "six hundred thousand and seventy");
+    expectConversion(800000,
+        "eight hundred thousand");
+    expectConversion(90000,
+        "ninety thousand");
+    expectConversion(10020,
+        "ten thousand and twenty");
+    expectConversion(12300,
+        "twelve thousand three hundred");
+  }
+
   private void expectConversion(final int number, final String expectedWords) {
     assertEquals(expectedWords, NumbersToWords.convert(number));
   }

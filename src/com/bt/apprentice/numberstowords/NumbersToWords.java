@@ -43,7 +43,8 @@ public class NumbersToWords {
 
   private void appendThousands(final int thousands) {
     if (thousands > 0) {
-      append(convertTensAndUnits(thousands) + " thousand");
+      NumbersToWords thousandsConvertor = new NumbersToWords(thousands);
+      append(thousandsConvertor.convert() + " thousand");
     }
   }
 
