@@ -28,24 +28,10 @@ public class NumbersToWords {
     final int hundreds = remainder / 100;
     final int tensAndUnits = remainder - hundreds * 100;
 
-    if (thousands > 0) {
-      append(convertThousands(thousands));
-    }
-    if (hundreds > 0) {
-      append(convertHundreds(hundreds));
-    }
-    if (tensAndUnits > 0) {
-      appendWithAnd(convertTensAndUnits(tensAndUnits));
-    }
+    appendThousands(thousands);
+    appendHundreds(hundreds);
+    appendTensAndUnits(tensAndUnits);
     return result.toString();
-  }
-
-  private void append(final String words) {
-    appendWithSeparator(words, " ");
-  }
-
-  private void appendWithAnd(final String words) {
-    appendWithSeparator(words, " and ");
   }
 
   private void appendWithSeparator(final String words, final String separator) {
@@ -55,12 +41,30 @@ public class NumbersToWords {
     result.append(words);
   }
 
-  private String convertThousands(final int thousands) {
-    return convertTensAndUnits(thousands) + " thousand";
+  private void appendThousands(final int thousands) {
+    if (thousands > 0) {
+      append(convertTensAndUnits(thousands) + " thousand");
+    }
   }
 
-  private String convertHundreds(final int hundreds) {
-    return NUMBERS_UP_TO_19[hundreds] + " hundred";
+  private void appendHundreds(final int hundreds) {
+    if (hundreds > 0) {
+      append(NUMBERS_UP_TO_19[hundreds] + " hundred");
+    }
+  }
+
+  private void appendTensAndUnits(final int tensAndUnits) {
+    if (tensAndUnits > 0) {
+      appendWithAnd(convertTensAndUnits(tensAndUnits));
+    }
+  }
+
+  private void append(final String words) {
+    appendWithSeparator(words, " ");
+  }
+
+  private void appendWithAnd(final String words) {
+    appendWithSeparator(words, " and ");
   }
 
   private String convertTensAndUnits(final int number) {
