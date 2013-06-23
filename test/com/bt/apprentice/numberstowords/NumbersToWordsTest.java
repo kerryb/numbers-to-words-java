@@ -69,6 +69,12 @@ public class NumbersToWordsTest {
     expectConversion(501, "five hundred and one");
   }
 
+  @Test
+  public void convertsThousands() {
+    expectConversion(4000, "four thousand");
+    expectConversion(9000, "nine thousand");
+  }
+
   private void expectConversion(final int number, final String expectedWords) {
     assertEquals(expectedWords, NumbersToWords.convert(number));
   }

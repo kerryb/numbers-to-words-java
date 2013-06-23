@@ -10,9 +10,13 @@ public class NumbersToWords {
       "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 
   public static String convert(final int number) {
+    final int thousands = number / 1000;
     final int hundreds = number / 100;
     final int tensAndUnits = number - hundreds * 100;
-    if (number >= 100) {
+
+    if (number > 1000) {
+      return convertTensAndUnits(thousands) + " thousand";
+    } else if (number >= 100) {
       if (tensAndUnits == 0) {
         return convertHundreds(number);
       } else {
