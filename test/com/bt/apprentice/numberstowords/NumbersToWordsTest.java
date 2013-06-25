@@ -112,9 +112,19 @@ public class NumbersToWordsTest {
     expectConversion(12300, "twelve thousand three hundred");
   }
 
-  @Test(expected = IllegalArgumentException.class) @Ignore
-  public void rejectsNumbersOver999999() {
-    NumbersToWords.convert(1000000);
+  @Test
+  public void convertsArbitrarySevenEightAndNineDigitNumbers() {
+    expectConversion(123456789,
+        "one hundred and twenty-three million four hundred and fifty-six thousand seven hundred and eighty-nine");
+    expectConversion(100000002, "one hundred million and two");
+    expectConversion(345000067, "three hundred and forty-five million and sixty-seven");
+    expectConversion(12300400, "twelve million three hundred thousand four hundred");
+    expectConversion(5000000, "five million");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void rejectsNumbersOver999999999() {
+    NumbersToWords.convert(1000000000);
   }
 
   private void expectConversion(final int number, final String expectedWords) {
