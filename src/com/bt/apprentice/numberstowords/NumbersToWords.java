@@ -21,26 +21,29 @@ public class NumbersToWords {
   public String convert() {
     if (number == 0) {
       return ("zero");
-    } else if (number > 999999) {
+    } else if (number > 999999999) {
       throw new IllegalArgumentException();
     }
 
-    final int thousands = number / 1000;
-    int remainder = number - thousands * 1000;
+    final int millions = number / 1000000;
+    int remainder = number - millions * 1000000;
+    final int thousands = remainder / 1000;
+    remainder = remainder - thousands * 1000;
     final int hundreds = remainder / 100;
     final int tensAndUnits = remainder - hundreds * 100;
 
+    appendMillions(millions);
     appendThousands(thousands);
     appendHundreds(hundreds);
     appendTensAndUnits(tensAndUnits);
     return result.toString();
   }
 
-  private void appendWithSeparator(final String words, final String separator) {
-    if (result.length() > 0) {
-      result.append(separator);
+  private void appendMillions(final int millions) {
+    if (millions > 0) {
+      NumbersToWords millionsConvertor = new NumbersToWords(millions);
+      append(millionsConvertor.convert() + " million");
     }
-    result.append(words);
   }
 
   private void appendThousands(final int thousands) {
@@ -68,6 +71,13 @@ public class NumbersToWords {
 
   private void appendWithAnd(final String words) {
     appendWithSeparator(words, " and ");
+  }
+
+  private void appendWithSeparator(final String words, final String separator) {
+    if (result.length() > 0) {
+      result.append(separator);
+    }
+    result.append(words);
   }
 
   private String convertTensAndUnits(final int number) {
