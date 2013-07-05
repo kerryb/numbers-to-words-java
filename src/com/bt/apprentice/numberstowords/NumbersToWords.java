@@ -26,11 +26,11 @@ public class NumbersToWords {
     }
 
     final int millions = number / 1000000;
-    int remainder = number - millions * 1000000;
+    int remainder = number % 1000000;
     final int thousands = remainder / 1000;
-    remainder = remainder - thousands * 1000;
+    remainder = remainder % 1000;
     final int hundreds = remainder / 100;
-    final int tensAndUnits = remainder - hundreds * 100;
+    final int tensAndUnits = remainder % 100;
 
     appendMillions(millions);
     appendThousands(thousands);
