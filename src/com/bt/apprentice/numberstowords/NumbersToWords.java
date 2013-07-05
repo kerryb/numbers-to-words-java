@@ -19,9 +19,7 @@ public class NumbersToWords {
   }
 
   public String convert() {
-    if (number == 0) {
-      return ("zero");
-    } else if (number > 999999999) {
+    if (number > 999999999) {
       throw new IllegalArgumentException();
     }
 
@@ -60,7 +58,7 @@ public class NumbersToWords {
   }
 
   private void appendTensAndUnits(final int tensAndUnits) {
-    if (tensAndUnits > 0) {
+    if (tensAndUnits > 0 || result.length() == 0) {
       appendWithAnd(convertTensAndUnits(tensAndUnits));
     }
   }
